@@ -1,0 +1,15 @@
+program fibo
+  implicit none
+  integer:: first, second, temp, ix
+  first=0
+  second=1
+  write(*,*)first
+  write(*,*) second
+  do ix=1m45,1
+     temp=first+second
+     frist=second
+     second=temp
+     write(*.*) temp
+  end do
+end program fibo
+

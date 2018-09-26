@@ -1,0 +1,25 @@
+  ! nombre del programa
+program temperatura
+  
+  implicit none
+
+  !declaracion de variables
+  Real::temp_f, temp_c, temp_k,ti, temp_cf 
+  Integer::n,i
+  
+  write(*,*)"Por favor dame una temperatura inicial y final en Celsius"
+  read(*,*) ti
+  read(*,*) temp_cf
+  
+  !Conversion a °C
+  n=0
+  temp_c=ti
+  do i=0,100
+  temp_c=temp_c + n
+  temp_f=(temp_c*1.8)+32.0
+  temp_k=temp_c + 273.15
+  print*,temp_c,"Celsius", temp_f, "Farenheit", temp_k, "Kelvin"
+  n=(temp_cf-ti)/100
+  end do
+  write(*,*)"Su temperatura en °C es de ",temp_c
+end program temperatura
