@@ -1,0 +1,69 @@
+program trapezoid2
+
+  implicit none
+  real :: a,b
+  
+  print*, "[a,b]"
+  read*,a,b
+
+  call trapezoid_integration(a,b)
+
+  contains
+
+    subroutine trapezoid_integration(a,b)
+      implicit none
+      real ::  a,b
+      real :: integral,u,h,error,integralo, T
+      integer :: i,n
+
+      integral = 0.0
+      n=10
+      error=2.0
+      integralo=0.0
+     
+      
+      do while(error>1.0)
+         
+        
+      do i=0,n
+         u = a + ((b-a)*float(i)/float(n))
+       
+         if ((i.eq.0).or.(i.eq.n)) then
+            integral = integral+integrand(u)
+         else
+            integral = integral+(2.0*integrand(u))
+         end if
+      end do
+      
+
+     error=abs(integral-integralo)/integralo
+
+     integralo=integral
+     
+    
+      n=n*2
+   end do
+
+   h=(b-a)/(n)
+   
+   T=integral*(h/2.0)
+
+    print*,"error=",error
+      write (*,*) "Integral=",T
+    end subroutine trapezoid_integration
+
+    function integrand(x) result (value)
+      implicit none
+      real :: x
+      real :: value
+
+      if (x .lt. 0.00001) then
+         x = 0.00001
+      end if
+
+      value = (x**4)*EXP(X)/((EXP(X)-1.0)**2)
+    end function integrand
+
+    
+
+end program trapezoid2
